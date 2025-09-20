@@ -1,0 +1,55 @@
+class Encryption:
+
+    def __init__(self, sentence):
+        self.sentence = sentence
+
+    def split_by_group(self, size):
+        self.size = size
+        letters = list(self.sentence)
+        self.packs_of_letters = []
+        for i in range(0, len(letters), self.size):
+            self.packs_of_letters += [letters[i:i + self.size]]
+        return self.packs_of_letters
+
+    def encrypt(self):
+        encryption_key = (3,5,2,6,1,4)
+        encrypted_string = []
+        for pack in self.split_by_group(6):
+            encrypted_pack = []
+            for i, letter in enumerate(pack):
+                new_index = encryption_key[i]-1
+                encrypted_pack.append(pack[new_index])
+            encrypted_string.append(''.join(encrypted_pack))
+        result = ''.join(encrypted_string)
+        return result
+
+    def decrypt(self):
+        encryption_key = (3, 5, 2, 6, 1, 4)
+        decryption_key = [0] * len(encryption_key)
+        for i, new_index in enumerate(encryption_key):
+            decryption_key[new_index - 1] = i
+
+        decrypted_string = []
+
+        for pack in self.split_by_group(6):
+            decrypted_pack = []
+            for i, letter in enumerate(pack):
+                original_index = decryption_key[i]
+                decrypted_pack.append(pack[original_index])
+            decrypted_string.append(''.join(decrypted_pack))
+
+        result = ''.join(decrypted_string)
+        return result
+
+sentence = "You can write here anything you want, I encrypt this anyway!"
+
+# Encryption
+encrypt = Encryption(sentence)
+encryption_message = encrypt.encrypt()
+
+# Decryption
+decrypt = Encryption(encryption_message)
+decryption_message = decrypt.decrypt()
+
+print(f'Encrypted message:\n{encryption_message}')
+print(f'Decrypted message:\n{decryption_message}')
