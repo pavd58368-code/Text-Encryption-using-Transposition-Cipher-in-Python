@@ -1,0 +1,28 @@
+Lab: Text Encryption using Transposition Cipher in Python
+Objective
+
+Develop an algorithm and implement a program to encrypt any text using a transposition method and perform decryption to recover the original message.
+
+Input Data
+
+Programming language: Python
+
+Arbitrary text messages entered by the user in the variable sentence.
+
+Algorithm Description
+
+The message is stored in the variable sentence.
+
+The message is split into groups of 6 characters.
+
+Each character in the group is reordered according to a predefined key.
+
+Encrypted groups are concatenated into a single string.
+
+Decryption reverses the permutation using the inverse key.
+
+Analysis of Results
+
+The program successfully encrypts and decrypts any text message.
+
+The transposition cipher works by permuting character positions, allowing exact recovery if the key is known.
